@@ -1,0 +1,11 @@
+---
+
+- name: Manage elasticsearch s3 snapshot repo
+  elasticsearch_s3_repo:
+    host: elasticsearch_host
+    bucket: bucketname
+    endpoint: endpoint-name-if-youre-not-using-real-s3
+    access_key: aws_access_key
+    secret_key: aws_secret_key
+    repo_name: repository_name
+  run_once: true
