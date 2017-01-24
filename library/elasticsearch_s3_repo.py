@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# encoding: utf-8
 
 # Daniel Siechniewicz / nullDowntime Ltd <daniel@nulldowntime.com>
 
@@ -71,6 +72,11 @@ options:
   path_style_access:
     description:
       - whether to enable path style access to S3(like) storage
+    default: true
+    required: false
+  compress:
+    description:
+      - whether to enable metadata compression (indices are always compressed)
     default: true
     required: false
 requirements:
@@ -155,6 +161,7 @@ def create_repo_data(module):
     settings['secret_key'] = module.params['secret_key']
     settings['max_retries'] = module.params['max_retries']
     settings['path_style_access'] = module.params['path_style_access']
+    settings['compress'] = module.params['compress']
     return repo_data
 
 
@@ -187,6 +194,7 @@ def main():
                            aliases=['snapshot_repository_name']
                            ),
             path_style_access=dict(required=False, default=True, type='bool'),
+            compress=dict(required=False, default=True, type='bool'),
         )
     )
 
